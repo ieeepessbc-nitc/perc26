@@ -232,11 +232,34 @@
         .location-row {
             display: flex;
             align-items: center;
+            /* Changed to space-between to push the nav button to the right */
+            justify-content: space-between; 
             gap: 5px;
             font-size: 0.75rem;
             color: var(--secondary);
             font-weight: 600;
             margin-top: 6px;
+        }
+
+        /* --- New Navigation Button Style --- */
+        .nav-btn {
+            background-color: rgba(0, 150, 136, 0.1);
+            color: var(--secondary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid rgba(0, 150, 136, 0.2);
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--secondary);
+            color: white;
         }
 
         /* Animations */
@@ -297,7 +320,10 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">08:00 - 10:30</span></div>
                 <div class="session-title">Registration and Inauguration</div>
-                <div class="location-row">📍 Bhaskara Hall</div>
+                <div class="location-row">
+                    <span>📍 Bhaskara Hall</span>
+                    <a href="https://maps.app.goo.gl/g9yhzLudHV2Y5Z5HA" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -309,7 +335,10 @@
                 <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
                 <div class="session-title">GFM - Controller Design, Current Limitations, EMT & Phasor Modelling</div>
                 <div class="speaker-row">🎤 Prof. Pratyesha Bhui (IIT Dharwad)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -321,7 +350,10 @@
                 <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
                 <div class="session-title">LAB Session: GFM - Controller Design, Current Limitations</div>
                 <div class="speaker-row">🎤 Prof. Pratyesha Bhui (IIT Dharwad)</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -332,7 +364,10 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
                 <div class="session-title">OPAL-RT Hands-on Session</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
         </div>
 
@@ -341,7 +376,10 @@
                 <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
                 <div class="session-title">Blockchain and its Application to Electricity Market</div>
                 <div class="speaker-row">🎤 Dr. R.K Mishra (IIT BHU Varanasi)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -353,7 +391,10 @@
                 <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
                 <div class="session-title">Next-Gen Grid Management: Advancing Intelligence in Planning</div>
                 <div class="speaker-row">🎤 Mr. MN Aravind (Siemens)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -365,7 +406,10 @@
                 <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
                 <div class="session-title">One Sun, One World, One Grid - Cross Border Interconnection</div>
                 <div class="speaker-row">🎤 Mr. Rajesh Kumar (CTUIL)</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -385,7 +429,10 @@
                 <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
                 <div class="session-title">Dynamic Modelling Simulation & Analysis of Large Scale Power Systems</div>
                 <div class="speaker-row">🎤 Dr. Abhineet Prakash (IIT Bhubaneshwar)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -396,7 +443,10 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
                 <div class="session-title">Energy Audit</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -408,7 +458,10 @@
                 <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
                 <div class="session-title">Hydrogen Modelling</div>
                 <div class="speaker-row">🎤 Dr. Amrutha Raju B. (NIT Calicut)</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -419,7 +472,10 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
                 <div class="session-title">Dr. ARB (NIT Calicut) (Hands-on-session)</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
         </div>
 
@@ -428,7 +484,10 @@
                 <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
                 <div class="session-title">Grid Resilience and Sustainability with Smart Cyber Physical Systems</div>
                 <div class="speaker-row">🎤 Prof. Shanti Swaroop (IIT Madras)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -440,7 +499,10 @@
                 <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
                 <div class="session-title">Smart Monitoring of Power Systems Using AI</div>
                 <div class="speaker-row">🎤 Prof. Saikat Chakrabarty (IIT Kanpur)</div>
-                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+                <div class="location-row">
+                    <span>📍 PG Seminar Hall, EED PG Block</span>
+                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -452,7 +514,10 @@
                 <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
                 <div class="session-title">Integration of Renewable Energy & Energy Storage</div>
                 <div class="speaker-row">🎤 Prof. Sasi Kottayal</div>
-                <div class="location-row">📍 DB 105, Department Building</div>
+                <div class="location-row">
+                    <span>📍 DB 105, Department Building</span>
+                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card break">
@@ -463,7 +528,10 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
                 <div class="session-title">Panel Discussion and Valedictory Session</div>
-                <div class="location-row">📍 Bhaskara Hall</div>
+                <div class="location-row">
+                    <span>📍 Bhaskara Hall</span>
+                    <a href="https://maps.app.goo.gl/g9yhzLudHV2Y5Z5HA" target="_blank" class="nav-btn">Map ↗</a>
+                </div>
             </div>
 
             <div class="session-card visit">
