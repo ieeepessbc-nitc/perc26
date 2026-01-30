@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PERC26 Schedule</title>
+    <style>
+        :root {
+            --primary: #0056b3;       /* Deep Blue */
+            --primary-dark: #003d80;
+            --secondary: #009688;     /* Teal */
+            --accent: #ff9800;        /* Orange */
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --light-text: #6b7280;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-bottom: 40px;
+        }
+
+        /* --- Header Design --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px 20px 30px 20px; /* Extra bottom padding for overlap */
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .event-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Organizer Card inside Header */
+        .organizer-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.7rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .organizer-label {
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            opacity: 0.7;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Sticky Navigation (Fit on Screen) --- */
+        .nav-wrapper {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin: -20px 10px 15px 10px; /* Negative margin to pull up over header */
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 16px;
+            padding: 5px;
+            box-shadow: var(--shadow);
+            justify-content: space-between; /* Distribute evenly */
+        }
+
+        .tab-btn {
+            flex: 1; /* Each button takes equal width */
+            border: none;
+            background: transparent;
+            padding: 8px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 0; /* Prevents flex items from overflowing */
+        }
+
+        .tab-day {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--light-text);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .tab-date {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* Active State */
+        .tab-btn.active {
+            background: var(--primary);
+            box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
+        }
+
+        .tab-btn.active .tab-day,
+        .tab-btn.active .tab-date {
+            color: white;
+        }
+
+        /* --- Schedule Content --- */
+        .schedule-container {
+            padding: 0 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .day-schedule {
+            display: none;
+            animation: slideUp 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .day-schedule.active {
+            display: block;
+        }
+
+        /* Timeline Items */
+        .session-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .session-card.break {
+            border-left-color: var(--accent);
+            background: #fffaf0;
+        }
+        
+        .session-card.visit {
+            border-left-color: var(--secondary);
+            background: #f0fdfa;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .time-badge {
+            background: #eef2ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        
+        .session-card.break .time-badge { background: #fff3e0; color: var(--accent); }
+        .session-card.visit .time-badge { background: #e0f2f1; color: var(--secondary); }
+
+        .session-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.35;
+        }
+
+        .speaker-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-top: 2px;
+        }
+
+        .location-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="event-badge">2026 Edition</div>
+            <div class="event-badge">NIT Calicut</div>
+        </div>
+        
+        <h1>PERC '26</h1>
+        <div class="subtitle">
+            <span>Power & Energy Research Conference</span>
+        </div>
+
+        <div class="organizer-box">
+            <div class="organizer-label">Organized By</div>
+            Dept. of Electrical Engineering, IEEE PES SBC NIT Calicut & Centre for Clean Energy and Circular Economy
+        </div>
+    </header>
+
+    <div class="nav-wrapper">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openDay(event, 'day1')">
+                <span class="tab-day">Day 1</span>
+                <span class="tab-date">03 Feb</span>
+            </button>
+            <button class="tab-btn" onclick="openDay(event, 'day2')">
+                <span class="tab-day">Day 2</span>
+                <span class="tab-date">04 Feb</span>
+            </button>
+            <button class="tab-btn" onclick="openDay(event, 'day3')">
+                <span class="tab-day">Day 3</span>
+                <span class="tab-date">05 Feb</span>
+            </button>
+            <button class="tab-btn" onclick="openDay(event, 'day4')">
+                <span class="tab-day">Day 4</span>
+                <span class="tab-date">06 Feb</span>
+            </button>
+            <button class="tab-btn" onclick="openDay(event, 'day5')">
+                <span class="tab-day">Day 5</span>
+                <span class="tab-date">07 Feb</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="schedule-container">
+
+        <div id="day1" class="day-schedule active">
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
+                <div class="session-title">Registration and Inauguration</div>
+                <div class="location-row">📍 Bhaskara Hall</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">10:30 - 10:45</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
+                <div class="session-title">GFM - Controller Design, Current Limitations, EMT & Phasor Modelling</div>
+                <div class="speaker-row">🎤 Prof. Pratyesha Bhui</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">12:15 - 01:40</span></div>
+                <div class="session-title">Lunch Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
+                <div class="session-title">LAB Session: GFM - Controller Design, Current Limitations</div>
+                <div class="speaker-row">🎤 Prof. Pratyesha Bhui</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">03:15 - 03:30</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
+                <div class="session-title">OPAL-RT Hands-on Session</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+        </div>
+
+        <div id="day2" class="day-schedule">
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
+                <div class="session-title">Blockchain and its Application to Electricity Market</div>
+                <div class="speaker-row">🎤 Dr. R.K Mishra (IIT BHU Varanasi)</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">10:30 - 10:45</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
+                <div class="session-title">Next-Gen Grid Management: Advancing Intelligence in Planning</div>
+                <div class="speaker-row">🎤 Mr. MN Aravind (Siemens)</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">12:15 - 01:40</span></div>
+                <div class="session-title">Lunch Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
+                <div class="session-title">One Sun, One World, One Grid - Cross Border Interconnection</div>
+                <div class="speaker-row">🎤 Mr. Rajesh Kumar (CTUIL)</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">03:15 - 03:30</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
+                <div class="session-title">Paper Presentations (Parallel Tracks)</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+        </div>
+
+        <div id="day3" class="day-schedule">
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
+                <div class="session-title">Dynamic Modelling Simulation & Analysis of Large Scale Power Systems</div>
+                <div class="speaker-row">🎤 Dr. Abhineet Prakash (IIT Bhubaneshwar)</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">10:30 - 10:45</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
+                <div class="session-title">Energy Audit</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">12:15 - 01:40</span></div>
+                <div class="session-title">Lunch Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
+                <div class="session-title">Hydrogen Modelling</div>
+                <div class="speaker-row">🎤 Dr. Amrutha Raju B. (NIT Calicut)</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">03:15 - 03:30</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
+                <div class="session-title">ARB (Hands-on-session)</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+        </div>
+
+        <div id="day4" class="day-schedule">
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">09:00 - 10:30</span></div>
+                <div class="session-title">Grid Resilience and Sustainability with Smart Cyber Physical Systems</div>
+                <div class="speaker-row">🎤 Prof. Shanti Swaroop (IIT Madras)</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">10:30 - 10:45</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">10:45 - 12:15</span></div>
+                <div class="session-title">Smart Monitoring of Power Systems Using AI</div>
+                <div class="speaker-row">🎤 Prof. Saikat Chakrabarty (IIT Kanpur)</div>
+                <div class="location-row">📍 PG Seminar Hall, EED PG Block</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">12:15 - 01:40</span></div>
+                <div class="session-title">Lunch Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">01:45 - 03:15</span></div>
+                <div class="session-title">Integration of Renewable Energy & Energy Storage</div>
+                <div class="speaker-row">🎤 Prof. Sasi Kottayal</div>
+                <div class="location-row">📍 DB 105, Department Building</div>
+            </div>
+
+            <div class="session-card break">
+                <div class="meta-row"><span class="time-badge">03:15 - 03:30</span></div>
+                <div class="session-title">Tea Break</div>
+            </div>
+
+            <div class="session-card">
+                <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
+                <div class="session-title">Panel Discussion and Valedictory Session</div>
+                <div class="location-row">📍 Bhaskara Hall</div>
+            </div>
+
+            <div class="session-card visit">
+                <div class="meta-row"><span class="time-badge">Evening</span></div>
+                <div class="session-title">Gala Dinner</div>
+            </div>
+        </div>
+
+        <div id="day5" class="day-schedule">
+            <div class="session-card visit">
+                <div class="meta-row"><span class="time-badge">Full Day</span></div>
+                <div class="session-title">Industry and Laboratory Visit</div>
+                <div class="speaker-row">POWERGRID 2000MW VSC HVDC Station</div>
+                <div class="location-row">📍 Thrissur</div>
+            </div>
+            
+            <div style="text-align:center; padding: 20px; color: var(--light-text); font-size: 0.8rem;">
+                Have a safe journey back!
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openDay(evt, dayName) {
+            // Hide all tab content
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("day-schedule");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Remove active class from buttons
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show current tab and add active class to button
+            document.getElementById(dayName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Auto scroll to top of content (account for sticky header)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
