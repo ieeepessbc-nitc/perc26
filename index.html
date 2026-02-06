@@ -32,11 +32,10 @@
             padding-bottom: 40px;
         }
 
-        /* --- Header Design --- */
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 25px 20px 30px 20px; /* Extra bottom padding for overlap */
+            padding: 25px 20px 30px 20px;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
             position: relative;
@@ -77,7 +76,6 @@
             gap: 6px;
         }
 
-        /* Organizer Card inside Header */
         .organizer-box {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -97,12 +95,11 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- Sticky Navigation (Fit on Screen) --- */
         .nav-wrapper {
             position: sticky;
             top: 10px;
             z-index: 100;
-            margin: -20px 10px 15px 10px; /* Negative margin to pull up over header */
+            margin: -20px 10px 15px 10px;
         }
 
         .tabs {
@@ -111,11 +108,11 @@
             border-radius: 16px;
             padding: 5px;
             box-shadow: var(--shadow);
-            justify-content: space-between; /* Distribute evenly */
+            justify-content: space-between;
         }
 
         .tab-btn {
-            flex: 1; /* Each button takes equal width */
+            flex: 1;
             border: none;
             background: transparent;
             padding: 8px 0;
@@ -127,7 +124,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 0; /* Prevents flex items from overflowing */
+            min-width: 0;
         }
 
         .tab-day {
@@ -144,7 +141,6 @@
             color: var(--text);
         }
 
-        /* Active State */
         .tab-btn.active {
             background: var(--primary);
             box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
@@ -155,7 +151,6 @@
             color: white;
         }
 
-        /* --- Schedule Content --- */
         .schedule-container {
             padding: 0 15px;
             max-width: 600px;
@@ -171,7 +166,6 @@
             display: block;
         }
 
-        /* Timeline Items */
         .session-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
@@ -232,7 +226,6 @@
         .location-row {
             display: flex;
             align-items: center;
-            /* Changed to space-between to push the nav button to the right */
             justify-content: space-between; 
             gap: 5px;
             font-size: 0.75rem;
@@ -241,7 +234,29 @@
             margin-top: 6px;
         }
 
-        /* --- New Navigation Button Style --- */
+        /* --- Logistics Info Box for Visit --- */
+        .info-box {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 150, 136, 0.05);
+            border-radius: 8px;
+            border: 1px dashed rgba(0, 150, 136, 0.3);
+            font-size: 0.75rem;
+            color: #374151;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 4px;
+            gap: 8px;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 65px;
+        }
+
         .nav-btn {
             background-color: rgba(0, 150, 136, 0.1);
             color: var(--secondary);
@@ -262,7 +277,6 @@
             color: white;
         }
 
-        /* Animations */
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -322,7 +336,7 @@
                 <div class="session-title">Registration and Inauguration</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -337,7 +351,7 @@
                 <div class="speaker-row">🎤 Prof. Pratyesha Bhui (IIT Dharwad)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -352,7 +366,7 @@
                 <div class="speaker-row">🎤 Prof. Pratyesha Bhui (IIT Dharwad)</div>
                 <div class="location-row">
                     <span>📍 DB 105, Department Building</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -366,7 +380,7 @@
                 <div class="session-title">OPAL-RT Hands-on Session</div>
                 <div class="location-row">
                     <span>📍 DB 105, Department Building</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
         </div>
@@ -378,7 +392,7 @@
                 <div class="speaker-row">🎤 Dr. R.K Mishra (IIT BHU Varanasi)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -393,7 +407,7 @@
                 <div class="speaker-row">🎤 Mr. MN Aravind (Siemens)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -408,7 +422,7 @@
                 <div class="speaker-row">🎤 Dr. Devesh Shukla, NIT Calicut</div>
                 <div class="location-row">
                     <span>📍 DB 105, Department Building</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -420,21 +434,9 @@
             <div class="session-card">
                 <div class="meta-row"><span class="time-badge">03:30 - 05:00</span></div>
                 <div class="session-title">Paper Presentations (Parallel Tracks)</div>
-                
-                <div class="location-row" style="margin-top: 10px;">
-                    <span>📍 Track 1: DB105</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
-                </div>
-            
-                <div class="location-row" style="margin-top: 5px;">
-                    <span>📍 Track 2: PG Seminar Hall</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
-                </div>
-            
-                <div class="location-row" style="margin-top: 5px;">
-                    <span>📍 Track 3: DB301</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
-                </div>
+                <div class="location-row"><span>📍 Track 1: DB105</span></div>
+                <div class="location-row"><span>📍 Track 2: PG Seminar Hall</span></div>
+                <div class="location-row"><span>📍 Track 3: DB301</span></div>
             </div>
         </div>
 
@@ -445,7 +447,7 @@
                 <div class="speaker-row">🎤 Dr. Abhineet Prakash (IIT Bhubaneshwar)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -460,7 +462,7 @@
                 <div class="speaker-row">🎤 Mr. Natesh Mayavel, CTO, InPhase Power Technologies</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -475,7 +477,7 @@
                 <div class="speaker-row">🎤 Dr. Amrutha Raju B. (NIT Calicut)</div>
                 <div class="location-row">
                     <span>📍 DB 105, Department Building</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -490,7 +492,7 @@
                 <div class="speaker-row">🎤 Dr. Amrutha Raju B. (NIT Calicut)</div>
                 <div class="location-row">
                     <span>📍 DB 105, Department Building</span>
-                    <a href="https://maps.app.goo.gl/CHfUSn9uuWpzDt398" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
         </div>
@@ -502,7 +504,7 @@
                 <div class="speaker-row">🎤 Prof. Shanti Swaroop (IIT Madras)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -517,7 +519,7 @@
                 <div class="speaker-row">🎤 Prof. Saikat Chakrabarty (IIT Kanpur)</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -532,8 +534,7 @@
                 <div class="speaker-row">🎤 Prof. Sasi Kottayal</div>
                 <div class="location-row">
                     <span>📍 PG Seminar Hall, EED PG Block</span>
-                    <a href="https://maps.app.goo.gl/qq2bjjSunyXfkdzy6" target="_blank" class="nav-btn">Map ↗</a>
-                </div>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -547,7 +548,7 @@
                 <div class="session-title">Panel Discussion and Valedictory Session</div>
                 <div class="location-row">
                     <span>📍 Chanakya Hall</span>
-                    <a href="https://maps.app.goo.gl/g9yhzLudHV2Y5Z5HA" target="_blank" class="nav-btn">Map ↗</a>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
 
@@ -559,12 +560,28 @@
 
         <div id="day5" class="day-schedule active">
             <div class="session-card visit">
-                <div class="meta-row"><span class="time-badge">5:45 AM - 5:00 PM</span></div>
+                <div class="meta-row"><span class="time-badge">Pick up: 5:45 AM - Drop off: 5:00 PM</span></div>
                 <div class="session-title">Industry Visit</div>
                 <div class="speaker-row">POWERGRID 2000MW VSC HVDC Station</div>
+                
+                <div class="info-box">
+                    <div class="info-item">
+                        <span class="info-label">Venue:</span>
+                        <span>Main Gate, NIT Calicut</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Reporting:</span>
+                        <span>05:30 AM</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Note:</span>
+                        <span>Carry valid ID proof and wear formal attire/closed shoes.</span>
+                    </div>
+                </div>
+
                 <div class="location-row">
-                    <span>📍 Thrissur</span>
-                    <a href="https://maps.app.goo.gl/EvXVcxjwoHhjBi5m7" target="_blank" class="nav-btn">Map ↗</a>
+                    <span>📍 Thrissur, Kerala</span>
+                    <a href="https://maps.google.com" target="_blank" class="nav-btn">Map ↗</a>
                 </div>
             </div>
             
@@ -577,24 +594,20 @@
 
     <script>
         function openDay(evt, dayName) {
-            // Hide all tab content
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("day-schedule");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
 
-            // Remove active class from buttons
             tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active");
             }
 
-            // Show current tab and add active class to button
             document.getElementById(dayName).classList.add("active");
             evt.currentTarget.classList.add("active");
             
-            // Auto scroll to top of content (account for sticky header)
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
